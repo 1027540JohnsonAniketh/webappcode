@@ -1,0 +1,76 @@
+# Controls when the action will run.
+# Triggers the workflow on push or pull request events but only for the main branch
+on:
+  # Workflow is triggered on pull requests
+  pull_request:
+    # Workflow will only be triggered for pull requests on "master" branch
+    branches: [ main ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    # Ref: https://github.com/marketplace/actions/packer-github-actions
+    - name: Run Test Cases
+      run: |
+            mkdir test-suit
+            zip -r csye6225-webapp-${CIRCLE_BUILD_NUM}.zip webapp codedeploy/*.sh appspec.yml
+            pwd
+            ls -al
+            cp csye6225-webapp-${CIRCLE_BUILD_NUM}.zip test-suit/
+            pwd
+            cd test-suit
+            pwd
+            ls -al
+            unzip csye6225-webapp-${CIRCLE_BUILD_NUM}.zip
+            ls -al
+            pwd
+            cd webapp/app_psql
+            npm install
+            ls
+            npm run test
+            pwd
+            ls -al
+            cd ~
+            pwd
+            ls -al
+    - name: Build Deployment Artifcat
+      run: |
+            mkdir codedeploy-artifact
+            zip -r csye6225-webapp-${CIRCLE_BUILD_NUM}.zip webapp codedeploy/*.sh appspec.yml index.html scripts/*.sh
+            pwd
+            ls -al
+            mv csye6225-webapp-${CIRCLE_BUILD_NUM}.zip codedeploy-artifact/
+            ls -al
+            pwd
+            cd codedeploy-artifact
+            pwd
+            ls -al
+            cd ..
+            pwd
+            ls -al
+    - name: Copy Artifact to  S3
+      run: |
+            aws s3 sync ./codedeploy-artifact s3://${S3_CODEDEPLOY_BUCKET}
+    - name: CodeDeploy API call
+      run: |
+            DEPLOYMENT_ID=`aws deploy create-deployment \
+              --application-name ${CODEDEPLOY_APPLICATION_NAME} \
+              --deployment-config-name CodeDeployDefault.AllAtOnce \
+              --deployment-group-name ${CODEDEPLOY_APPLICATION_DEPLOYMENT_GROUP_NAME} \
+              --description "CSYE6255 - CodeDeploy" \
+              --s3-location bucket=${S3_CODEDEPLOY_BUCKET},bundleType=zip,key=csye6225-webapp-${CIRCLE_BUILD_NUM}.zip \
+              --region us-east-1 \
+              --output text`
+            echo $DEPLOYMENT_ID
+            aws deploy wait deployment-successful --deployment-id $DEPLOYMENT_ID --region us-east-1
+            aws deploy get-deployment --deployment-id $DEPLOYMENT_ID --query 'deploymentInfo.status' --region us-east-1 --output json

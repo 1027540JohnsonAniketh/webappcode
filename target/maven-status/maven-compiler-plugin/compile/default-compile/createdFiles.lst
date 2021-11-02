@@ -1,0 +1,15 @@
+com/webapp/cloud/model/MyUserDetails.class
+com/webapp/cloud/repository/MetadataRepository.class
+com/webapp/cloud/model/User.class
+com/webapp/cloud/config/SecurityConfig$1.class
+com/webapp/cloud/WorkApplication.class
+com/webapp/cloud/api/ImageService.class
+com/webapp/cloud/EC2/EC2Info.class
+com/webapp/cloud/config/SecurityConfig.class
+com/webapp/cloud/model/ImageEntity.class
+com/webapp/cloud/config/StorageConfig.class
+com/webapp/cloud/model/Metadata.class
+com/webapp/cloud/repository/ImageRepository.class
+com/webapp/cloud/api/UserImpl.class
+com/webapp/cloud/api/UserService.class
+com/webapp/cloud/repository/UserRepository.class
