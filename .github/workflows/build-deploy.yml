@@ -50,7 +50,7 @@ jobs:
           echo '*************Tree Strucutre Build Deployemnt Artifact After mkdir codedeploy_artifact*************'
           tree .
           zip -r ${{env.ARTIFACT_NAME}} codedeploy_artifact java src target
-          # cp -rf ${{env.ARTIFACT_NAME}} codedeploy_artifact/
+          cp -rf ${{env.ARTIFACT_NAME}} codedeploy_artifact/
           echo '*************Tree Strucutre Build Deployemnt Artifact After zip -r ${{env.ARTIFACT_NAME}} codedeploy_artifact/*************'
           tree .
           pwd
@@ -78,4 +78,4 @@ jobs:
           #echo 'Listing Foleders'
           tree .
           ls ./codedeploy_artifact
-          aws s3 cp ./codedeploy_artifact s3://${{secrets.AWS_BUCKET_NAME}} --recursive
+          aws s3 sync ./codedeploy-artifact s3://${{secrets.AWS_BUCKET_NAME}}
