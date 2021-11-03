@@ -24,17 +24,17 @@ jobs:
       - name: Build with maven
         run: |
           # sudo su
-          echo "${{env.ARTIFACT_NAME}}"
-          echo export DB_HOSTNAME=csye6225.c02nl79rv62h.us-west-2.rds.amazonaws.com >> /etc/environment
-          echo export DB_PORT=3306 >> /etc/environment
-          echo export DB_DATABASE=csye6225 >> /etc/environment
-          echo export DB_USER=csye6225 >> /etc/environment
-          echo export DB_PASS=csye6225 >> /etc/environment
-          echo export aws_access_key_id=AKIARSRCF6UBSLKMORCF >> /etc/environment
-          echo export aws_secret_access_key=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 >> /etc/environment
-          echo export aws_region=us-west-2 >> /etc/environment
-          echo export aws_bucket_name=q3mv7.prod.domain.tld20211031180936427300000001 >> /etc/environment
-          source /etc/environment
+          # echo "${{env.ARTIFACT_NAME}}"
+          # echo export DB_HOSTNAME=csye6225.c02nl79rv62h.us-west-2.rds.amazonaws.com >> /etc/environment
+          # echo export DB_PORT=3306 >> /etc/environment
+          # echo export DB_DATABASE=csye6225 >> /etc/environment
+          # echo export DB_USER=csye6225 >> /etc/environment
+          # echo export DB_PASS=csye6225 >> /etc/environment
+          # echo export aws_access_key_id=AKIARSRCF6UBSLKMORCF >> /etc/environment
+          # echo export aws_secret_access_key=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 >> /etc/environment
+          # echo export aws_region=us-west-2 >> /etc/environment
+          # echo export aws_bucket_name=q3mv7.prod.domain.tld20211031180936427300000001 >> /etc/environment
+          # source /etc/environment
           cat /etc/environment
           exit
           # pwd
