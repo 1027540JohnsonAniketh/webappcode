@@ -36,26 +36,18 @@ jobs:
           sudo mysql -e 'SHOW DATABASES;' -uroot -proot
       - name: Build with maven
         run: |
-          echo "***************************************Printitng environment variables***************************************************"
           cat /etc/environment
-          echo "******************************************************************************************"
-          echo "********************************************Starting mvn clean install**********************************************"
           mvn clean install
           pwd
-          echo "********************************************Build with maven List ls**********************************************"
           ls
-          # pwd
-          # ls
       - name: Build Deployemnt Artifact
         run: |
           mkdir codedeploy_artifact
           zip -r ${{env.ARTIFACT_NAME}} codedeploy_artifact/
-          echo "********************************************Build Deployemnt Artifact List ls**********************************************"
           ls
           pwd
           cd codedeploy_artifact
           pwd
-          echo "********************************************codedeploy_artifact List ls**********************************************"
           ls
           cd .. 
           pwd
@@ -66,3 +58,6 @@ jobs:
           aws-access-key-id: ${{secrets.AWS_ACCESS_KEY}}
           aws-secret-access-key: ${{secrets.AWS_SECRET_KEY}}
           aws-region: ${{secrets.AWS_REGION}}
+      - name: Copy Artifact to S3
+        run: |
+          aws s3 sync ./codedeploy_artifact s3://${{secrets.S3_CODEDEPLOY_BUCKET}}
