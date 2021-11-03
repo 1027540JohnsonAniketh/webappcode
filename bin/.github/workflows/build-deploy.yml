@@ -34,27 +34,18 @@ jobs:
           sudo /etc/init.d/mysql start
           sudo mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
           sudo mysql -e 'SHOW DATABASES;' -uroot -proot
-          echo '*************Installing Tree*************'
-          sudo apt-get install tree
       - name: Build with maven
         run: |
           cat /etc/environment
           mvn clean install
           pwd
           ls
-          echo '*************Tree Strucutre Build with maven*************'
-          tree .
       - name: Build Deployemnt Artifact
         run: |
           mkdir codedeploy_artifact
-          echo '*************Tree Strucutre Build Deployemnt Artifact After mkdir codedeploy_artifact*************'
-          tree .
           zip -r ${{env.ARTIFACT_NAME}} codedeploy_artifact/
-          echo '*************Tree Strucutre Build Deployemnt Artifact After zip -r ${{env.ARTIFACT_NAME}} codedeploy_artifact/*************'
-          tree .
+          ls
           pwd
-          echo '*************Tree Strucutre for codedeploy_artifact/*************'
-          tree .
           cd codedeploy_artifact
           #echo 'Printing path'
           pwd
@@ -75,6 +66,5 @@ jobs:
           #echo 'Printing path'
           pwd
           #echo 'Listing Foleders'
-          tree .
-          ls ./codedeploy_artifact
+          ls
           aws s3 cp ./codedeploy_artifact s3://${{secrets.AWS_BUCKET_NAME}} --recursive
