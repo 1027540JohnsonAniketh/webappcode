@@ -47,7 +47,9 @@ jobs:
           ls
           pwd
           cd codedeploy_artifact
+          #echo 'Printing path'
           pwd
+          #echo 'Listing codedeploy_artifact folders'
           ls
           cd .. 
           pwd
