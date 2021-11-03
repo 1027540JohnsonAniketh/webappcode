@@ -11,7 +11,7 @@ env:
   DB_PORT: 3306
   DB_DATABASE: userDB
   DB_USER: root
-  DB_PASS: ''
+  DB_PASSWORD: ''
   aws_secret_access_key: 3WuR0Zshd29kM7fc5JEpL7KQX7SooXVlF7OySMvV
   aws_access_key_id: AKIARSRCF6UBSLKMORCF
   aws_bucket_name: qqazc.dev.domain.tld20211031013007559900000001
@@ -29,6 +29,13 @@ jobs:
         uses: actions/setup-java@v1
         with: 
           java-version: 1.8
+      - name: Set up MySQL
+        run: |
+          echo "************************************MySQL Setup******************************************************"
+          sudo /etc/init.d/mysql start
+          mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
+          mysql -e 'SHOW DATABASES;' -uroot -proot
+          echo "************************************MySQL Setup******************************************************"
       - name: Build with maven
         run: |
           # sudo su
@@ -46,7 +53,9 @@ jobs:
           echo "******************************************************************************************"
           cat /etc/environment
           echo "******************************************************************************************"
-          mvn clean install
+          echo "********************************************Installin**********************************************"
+          # sudo apt install mysql-server
+          # mvn clean install
           # pwd
           # ls
           # mvn clean
