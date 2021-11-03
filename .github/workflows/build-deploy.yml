@@ -9,9 +9,9 @@ env:
   AWS_REGION: us-west-2
   DB_HOSTNAME: localhost
   DB_PORT: 3306
-  DB_DATABASE: userDB
-  DB_USER: root
-  DB_PASSWORD: 'root'
+  DB_DATABASE: csye6225
+  DB_USER: csye6225
+  DB_PASSWORD: 'csye6225'
   aws_secret_access_key: 3WuR0Zshd29kM7fc5JEpL7KQX7SooXVlF7OySMvV
   aws_access_key_id: AKIARSRCF6UBSLKMORCF
   aws_bucket_name: qqazc.dev.domain.tld20211031013007559900000001
