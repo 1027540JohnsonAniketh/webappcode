@@ -54,7 +54,7 @@ jobs:
           echo '*************Tree Strucutre Build Deployemnt Artifact After zip -r ${{env.ARTIFACT_NAME}} codedeploy_artifact/*************'
           tree .
           pwd
-          echo '*************Tree Strucutre for codedeploy_artifact/*************'
+          echo '*************T ree Strucutre for codedeploy_artifact/*************'
           tree .
           cd codedeploy_artifact
           #echo 'Printing path'
