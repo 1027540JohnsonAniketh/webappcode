@@ -60,5 +60,9 @@ jobs:
           aws-region: ${{secrets.AWS_REGION}}
       - name: Copy Artifact to S3
         run: |
-          #echo 'Copying artifact to s3 bycket '
-          aws s3 sync ./codedeploy_artifact s3://${{secrets.AWS_BUCKET_NAME}}
+          #echo 'Copying artifact to s3 bucket '
+          #echo 'Printing path'
+          pwd
+          #echo 'Listing Foleders'
+          ls
+          aws s3 cp ./codedeploy_artifact s3://${{secrets.AWS_BUCKET_NAME}}
