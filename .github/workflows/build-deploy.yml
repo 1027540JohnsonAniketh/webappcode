@@ -23,7 +23,7 @@ jobs:
           java-version: 1.8
       - name: Build with maven
         run: |
-          # sudo su
+          sudo su
           # echo "${{env.ARTIFACT_NAME}}"
           # echo export DB_HOSTNAME=csye6225.c02nl79rv62h.us-west-2.rds.amazonaws.com >> /etc/environment
           # echo export DB_PORT=3306 >> /etc/environment
