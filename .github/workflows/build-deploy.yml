@@ -27,7 +27,7 @@ jobs:
           pwd
           ls
           mvn clean
-	  mvn clean install
+          mvn clean install
           pwd
           ls
       - name: Build Deployemnt Artifact
