@@ -78,4 +78,4 @@ jobs:
           #echo 'Listing Foleders'
           tree .
           ls ./codedeploy_artifact
-          aws s3 sync ./codedeploy-artifact s3://${{secrets.AWS_BUCKET_NAME}}
+          aws s3 sync ./codedeploy_artifact s3://${{secrets.AWS_BUCKET_NAME}}
