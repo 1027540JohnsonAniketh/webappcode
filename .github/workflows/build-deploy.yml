@@ -61,4 +61,4 @@ jobs:
       - name: Copy Artifact to S3
         run: |
           #echo 'Copying artifact to s3 bycket '
-          aws s3 sync ./codedeploy_artifact s3://${{secrets.S3_CODEDEPLOY_BUCKET}}
+          aws s3 sync ./codedeploy_artifact s3://${{secrets.AWS_BUCKET_NAME}}
