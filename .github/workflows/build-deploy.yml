@@ -25,7 +25,7 @@ jobs:
         run: |
           sudo su
           # echo "${{env.ARTIFACT_NAME}}"
-          echo export DB_HOSTNAME=csye6225.c02nl79rv62h.us-west-2.rds.amazonaws.com >> /etc/environment
+          echo export DB_HOSTNAME=csye6225.c02nl79rv62h.us-west-2.rds.amazonaws.com >> ~/etc/environment
           # echo export DB_PORT=3306 >> /etc/environment
           # echo export DB_DATABASE=csye6225 >> /etc/environment
           # echo export DB_USER=csye6225 >> /etc/environment
