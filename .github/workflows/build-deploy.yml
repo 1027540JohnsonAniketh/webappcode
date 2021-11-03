@@ -49,7 +49,7 @@ jobs:
           mkdir codedeploy_artifact
           echo '*************Tree Strucutre Build Deployemnt Artifact After mkdir codedeploy_artifact*************'
           tree .
-          zip -r ${{env.ARTIFACT_NAME}} codedeploy_artifact/ java/* src/* target/*
+          zip -r ${{env.ARTIFACT_NAME}} codedeploy_artifact java src target
           # cp -rf ${{env.ARTIFACT_NAME}} codedeploy_artifact/
           echo '*************Tree Strucutre Build Deployemnt Artifact After zip -r ${{env.ARTIFACT_NAME}} codedeploy_artifact/*************'
           tree .
