@@ -26,6 +26,11 @@ jobs:
     #   uses: actions/setup-java@v1
     #   with: 
     #       java-version: 1.8
+    - name: Set up MySQL
+      run: |
+        sudo /etc/init.d/mysql start
+        sudo mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
+        sudo mysql -e 'SHOW DATABASES;' -uroot -proot
     - name: Run tests
       run: |
         mvn -Dtest=AmiWebapp1ApplicationTests test
