@@ -65,4 +65,4 @@ jobs:
           pwd
           #echo 'Listing Foleders'
           ls
-          aws s3 cp ./codedeploy_artifact s3://${{secrets.AWS_BUCKET_NAME}}
+          aws s3 cp ./codedeploy_artifact s3://${{secrets.AWS_BUCKET_NAME}} --recursive
