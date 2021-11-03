@@ -36,7 +36,7 @@ jobs:
           echo export aws_bucket_name=q3mv7.prod.domain.tld20211031180936427300000001 >> /etc/environment
           source /etc/environment
           cat /etc/environment
-
+          exit
           # pwd
           # ls
           # mvn clean
