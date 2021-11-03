@@ -14,7 +14,6 @@ env:
   DB_PASS: "ß"
   aws_secret_access_key: 3WuR0Zshd29kM7fc5JEpL7KQX7SooXVlF7OySMvV
   aws_access_key_id: AKIARSRCF6UBSLKMORCF
-  aws_region: us-west-2
   aws_bucket_name: qqazc.dev.domain.tld20211031013007559900000001
 
 on:
