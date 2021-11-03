@@ -7,6 +7,15 @@ env:
   CODEDEPLOY_APPLICATION_NAME: mywebapp
   CODEDEPLOY_APPLICATION_DEPLOYMENT_GROUP_NAME: mywebapp
   AWS_REGION: us-west-2
+  DB_HOSTNAME: localhost
+  DB_PORT: 3306
+  DB_DATABASE: userDB
+  DB_USER: root
+  DB_PASS: "ß"
+  aws_secret_access_key: 3WuR0Zshd29kM7fc5JEpL7KQX7SooXVlF7OySMvV
+  aws_access_key_id: AKIARSRCF6UBSLKMORCF
+  aws_region: us-west-2
+  aws_bucket_name: qqazc.dev.domain.tld20211031013007559900000001
 
 on:
   pull_request:
@@ -23,9 +32,9 @@ jobs:
           java-version: 1.8
       - name: Build with maven
         run: |
-          sudo su
+          # sudo su
           # echo "${{env.ARTIFACT_NAME}}"
-          echo export DB_HOSTNAME=csye6225.c02nl79rv62h.us-west-2.rds.amazonaws.com >> ~/etc/environment
+          # echo export DB_HOSTNAME=csye6225.c02nl79rv62h.us-west-2.rds.amazonaws.com >> ~/etc/environment
           # echo export DB_PORT=3306 >> /etc/environment
           # echo export DB_DATABASE=csye6225 >> /etc/environment
           # echo export DB_USER=csye6225 >> /etc/environment
@@ -35,7 +44,9 @@ jobs:
           # echo export aws_region=us-west-2 >> /etc/environment
           # echo export aws_bucket_name=q3mv7.prod.domain.tld20211031180936427300000001 >> /etc/environment
           # source /etc/environment
+          echo "******************************************************************************************"
           cat /etc/environment
+          echo "******************************************************************************************"
           exit
           # pwd
           # ls
