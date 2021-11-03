@@ -21,12 +21,12 @@ jobs:
         uses: actions/setup-java@v1
         with: 
           java-version: 1.8
-      - name: Build with gradle
+      - name: Build with maven
         run: |
           echo "${{env.ARTIFACT_NAME}}"
           pwd
           ls
-          mvn clean install
+          mvn clean
           pwd
           ls -al
           ls -al build/libs
