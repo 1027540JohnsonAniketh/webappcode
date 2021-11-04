@@ -7,4 +7,5 @@
 # cd /home/ubuntu/webapp
 # sudo mvn clean install
 # node index.js
-sudo mvn spring-boot:run
+# Export variables
+# sudo mvn spring-boot:run
