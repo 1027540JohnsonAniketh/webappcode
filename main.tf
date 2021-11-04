@@ -231,7 +231,7 @@ resource "aws_security_group" "application" {
 
     parameter {
         name = "general_log"
-        value = "0"
+        value = "0"  
     }
 
     parameter {
