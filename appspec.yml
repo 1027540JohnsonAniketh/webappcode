@@ -2,8 +2,8 @@ version: 0.0
 os: linux
 
 files:             
-  - source: /webapp
-    destination: /home/ubuntu/webapp
+  - source: /webapp1
+    destination: /home/ubuntu/webapp1
 hooks:
   AfterInstall:
     - location: ./codedeploy/afterInstall.sh
