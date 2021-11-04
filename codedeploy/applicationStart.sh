@@ -9,3 +9,7 @@
 # node index.js
 # Export variables
 # sudo mvn spring-boot:run
+
+cd /webapp
+sudo su
+sudo mvn clean
