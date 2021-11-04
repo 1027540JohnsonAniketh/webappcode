@@ -4,6 +4,6 @@
 # run the node js application
 sudo su
 ls
-cd /home/ubuntu/mywebapp
-java -jar target/*.jar
+cd /home/ubuntu/webapp
+sudo mvn clean install
 # node index.js

@@ -1,5 +1,4 @@
 #!/bin/bash
-echo 'Hello'
-pwd
-ls
-tree .
+sudo su 
+sudo apt update
+sudo apt install maven
