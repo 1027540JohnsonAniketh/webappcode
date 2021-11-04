@@ -4,6 +4,6 @@
 # run the node js application
 sudo su
 ls
-cd /mywebapp
+cd /home/ubuntu/mywebapp
 java -jar target/*.jar
 # node index.js

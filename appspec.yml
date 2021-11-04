@@ -3,7 +3,7 @@ os: linux
 
 files:             
   - source: /
-    destination: /home/ubuntu/mywebapp
+    destination: /home/ubuntu/
 hooks:
   AfterInstall:
     - location: ./codedeploy/afterInstall.sh

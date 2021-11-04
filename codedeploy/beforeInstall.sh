@@ -1,3 +1,5 @@
 #!/bin/bash
-cd /mywebapp/
-mvn clean
+echo 'Hello'
+pwd
+ls
+tree .
