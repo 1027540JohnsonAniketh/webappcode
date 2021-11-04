@@ -92,11 +92,11 @@ jobs:
       - name: CodeDeploy API call
         run: |
           DEPLOYMENT_ID=`aws deploy create-deployment --application-name ${{ env.CODEDEPLOY_APPLICATION_NAME }} \
-              --deployment-config-name CodeDeployDefault.AllAtOnce \ 
-              --deployment-group-name ${{ env.CODEDEPLOY_APPLICATION_DEPLOYMENT_GROUP_NAME }} \ 
-              --description "CSYE6255 - CodeDeploy" \ 
-              --s3-location bucket=${{ env.aws_bucket_name }},bundleType=zip,key=${{env.ARTIFACT_NAME}} \ 
-              --region ${{env.AWS_REGION}} \ 
+              --deployment-config-name CodeDeployDefault.AllAtOnce \
+              --deployment-group-name ${{ env.CODEDEPLOY_APPLICATION_DEPLOYMENT_GROUP_NAME }} \
+              --description "CSYE6255 - CodeDeploy" \
+              --s3-location bucket=${{ env.aws_bucket_name }},bundleType=zip,key=${{env.ARTIFACT_NAME}} \
+              --region ${{env.AWS_REGION}} \
               --output text`                
             echo $DEPLOYMENT_ID
             # aws deploy wait deployment-successful --deployment-id $DEPLOYMENT_ID --region us-west-2
