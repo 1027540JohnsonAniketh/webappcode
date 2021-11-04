@@ -32,7 +32,7 @@ import com.webapp.cloud.repository.UserRepository;
 
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/v1")
 public class ImageService {
 	@Value("${cloud.aws.region.bucket.name}")
     private String bucketName;
