@@ -4,8 +4,8 @@ name: Build and Deploy webapp
 env:
   #Artifact Name: csye6225-webapp-${{github.run_number}}.zip
   ARTIFACT_NAME: csye6225-webapp-${{github.run_number}}.zip
-  CODEDEPLOY_APPLICATION_NAME: mywebapp
-  CODEDEPLOY_APPLICATION_DEPLOYMENT_GROUP_NAME: mywebapp
+  CODEDEPLOY_APPLICATION_NAME: csye6225-webapp
+  CODEDEPLOY_APPLICATION_DEPLOYMENT_GROUP_NAME: csye6225-webapp-deployment
   AWS_REGION: ${{secrets.AWS_REGION}}
   DB_HOSTNAME: localhost
   DB_PORT: 3306
@@ -89,18 +89,15 @@ jobs:
           echo '${{env.ARTIFACT_NAME}}'
           echo ${{env.ARTIFACT_NAME}}
           echo $DEPLOYMENT_ID
-      # - name: CodeDeploy API call
-      #   run: |
-      #     |
-      #       DEPLOYMENT_ID=`aws deploy create-deployment \
-      #         --application-name ${CODEDEPLOY_APPLICATION_NAME} \
-      #         --deployment-config-name CodeDeployDefault.AllAtOnce \
-      #         --deployment-group-name ${CODEDEPLOY_APPLICATION_DEPLOYMENT_GROUP_NAME} \
-      #         --description "CSYE6255 - CodeDeploy" \
-      #         --s3-location bucket=${S3_CODEDEPLOY_BUCKET},bundleType=zip,key=${{env.ARTIFACT_NAME}} \
-      #         --region us-west-2 \ 
-      #         --output text`
-      #       echo $DEPLOYMENT_ID
-      #       aws deploy wait deployment-successful --deployment-id $DEPLOYMENT_ID --region us-west-2
-      #       aws deploy get-deployment --deployment-id $DEPLOYMENT_ID --query 'deploymentInfo.status' --region us-west-2 --output json
-      
+      - name: CodeDeploy API call
+        run: |
+          DEPLOYMENT_ID=`aws deploy create-deployment --application-name ${{ env.CODEDEPLOY_APPLICATION_NAME }} \
+              --deployment-config-name CodeDeployDefault.AllAtOnce \ 
+              --deployment-group-name ${ { env.CODEDEPLOY_APPLICATION_DEPLOYMENT_GROUP_NAME }} \ 
+              --description "CSYE6255 - CodeDeploy" \ 
+              --s3-location bucket=${{ env.aws_bucket_name }},bundleType=zip,key=${{env.ARTIFACT_NAME}} \ 
+              --region ${{env.AWS_REGION}} \ 
+              --output text`                
+            echo $DEPLOYMENT_ID
+            # aws deploy wait deployment-successful --deployment-id $DEPLOYMENT_ID --region us-west-2
+            # aws deploy get-deployment --deployment-id $DEPLOYMENT_ID --query 'deploymentInfo.status' --region us-west-2 --output json
