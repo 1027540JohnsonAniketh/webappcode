@@ -93,7 +93,7 @@ jobs:
         run: |
           DEPLOYMENT_ID=`aws deploy create-deployment --application-name ${{ env.CODEDEPLOY_APPLICATION_NAME }} \
               --deployment-config-name CodeDeployDefault.AllAtOnce \ 
-              --deployment-group-name ${ { env.CODEDEPLOY_APPLICATION_DEPLOYMENT_GROUP_NAME }} \ 
+              --deployment-group-name ${{ env.CODEDEPLOY_APPLICATION_DEPLOYMENT_GROUP_NAME }} \ 
               --description "CSYE6255 - CodeDeploy" \ 
               --s3-location bucket=${{ env.aws_bucket_name }},bundleType=zip,key=${{env.ARTIFACT_NAME}} \ 
               --region ${{env.AWS_REGION}} \ 
