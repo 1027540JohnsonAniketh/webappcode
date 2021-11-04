@@ -3,6 +3,6 @@
 # echo "hangingJavaProcessToStop: $hangingJavaProcessToStop"
 # kill -9 $hangingJavaProcessToStop
 #ll
-cd /home/ubuntu/webapp
+cd /webapp
 sudo su
 sudo mvn clean
