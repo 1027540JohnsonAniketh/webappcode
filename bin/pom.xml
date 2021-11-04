@@ -38,7 +38,6 @@
 		   <artifactId>cxf-spring-boot-starter-jaxrs</artifactId>
 		   <version>3.4.5</version>
 		</dependency>
-		
 		<dependency>
 		   <groupId>com.fasterxml.jackson.jaxrs</groupId>
 		   <artifactId>jackson-jaxrs-json-provider</artifactId>
@@ -78,7 +77,6 @@
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
 	</dependencies>
 
 	<build>	

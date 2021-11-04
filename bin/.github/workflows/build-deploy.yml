@@ -4,8 +4,8 @@ name: Build and Deploy webapp
 env:
   #Artifact Name: csye6225-webapp-${{github.run_number}}.zip
   ARTIFACT_NAME: csye6225-webapp-${{github.run_number}}.zip
-  CODEDEPLOY_APPLICATION_NAME: mywebapp
-  CODEDEPLOY_APPLICATION_DEPLOYMENT_GROUP_NAME: mywebapp
+  CODEDEPLOY_APPLICATION_NAME: csye6225-webapp
+  CODEDEPLOY_APPLICATION_DEPLOYMENT_GROUP_NAME: csye6225-webapp-deployment
   AWS_REGION: ${{secrets.AWS_REGION}}
   DB_HOSTNAME: localhost
   DB_PORT: 3306
@@ -34,18 +34,28 @@ jobs:
           sudo /etc/init.d/mysql start
           sudo mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
           sudo mysql -e 'SHOW DATABASES;' -uroot -proot
+          echo '*************Installing Tree*************'
+          sudo apt-get install tree
       - name: Build with maven
         run: |
           cat /etc/environment
           mvn clean install
           pwd
           ls
+          echo '*************Tree Strucutre Build with maven*************'
+          tree .
       - name: Build Deployemnt Artifact
         run: |
           mkdir codedeploy_artifact
-          zip -r ${{env.ARTIFACT_NAME}} codedeploy_artifact/
-          ls
+          echo '*************Tree Strucutre Build Deployemnt Artifact After mkdir codedeploy_artifact** ***********'
+          tree .
+          zip -r ${{env.ARTIFACT_NAME}} codedeploy/*.sh appspec.yml java src bin target pom.xml resources
+          cp -rf ${{env.ARTIFACT_NAME}} codedeploy_artifact/
+          echo '*************Tree Strucutre Build Deployemnt Artifact After zip -r ${{env.ARTIFACT_NAME}} codedeploy_artifact/*************'
+          tree .
           pwd
+          echo '*************T ree Strucutre for codedeploy_artifact/*************'
+          tree .
           cd codedeploy_artifact
           #echo 'Printing path'
           pwd
@@ -66,5 +76,28 @@ jobs:
           #echo 'Printing path'
           pwd
           #echo 'Listing Foleders'
-          ls
-          aws s3 cp ./codedeploy_artifact s3://${{secrets.AWS_BUCKET_NAME}} --recursive
+          tree .
+          ls ./codedeploy_artifact
+          aws s3 sync ./codedeploy_artifact s3://${{secrets.AWS_BUCKET_NAME}}
+          #echo 'Printing environment variables'
+          echo 'CODEDEPLOY_APPLICATION_NAME'
+          echo $CODEDEPLOY_APPLICATION_NAME
+          echo 'CODEDEPLOY_APPLICATION_DEPLOYMENT_GROUP_NAME'
+          echo $CODEDEPLOY_APPLICATION_DEPLOYMENT_GROUP_NAME
+          echo 'S3_CODEDEPLOY_BUCKET'
+          echo $S3_CODEDEPLOY_BUCKET
+          echo '${{env.ARTIFACT_NAME}}'
+          echo ${{env.ARTIFACT_NAME}}
+          echo $DEPLOYMENT_ID
+      - name: CodeDeploy API call
+        run: |
+          DEPLOYMENT_ID=`aws deploy create-deployment --application-name ${{ env.CODEDEPLOY_APPLICATION_NAME }} \
+              --deployment-config-name CodeDeployDefault.AllAtOnce \
+              --deployment-group-name ${{ env.CODEDEPLOY_APPLICATION_DEPLOYMENT_GROUP_NAME }} \
+              --description "CSYE6255 - CodeDeploy" \
+              --s3-location bucket=${{ env.aws_bucket_name }},bundleType=zip,key=${{env.ARTIFACT_NAME}} \
+              --region ${{env.AWS_REGION}} \
+              --output text`                
+            echo $DEPLOYMENT_ID
+            # aws deploy wait deployment-successful --deployment-id $DEPLOYMENT_ID --region us-west-2
+            # aws deploy get-deployment --deployment-id $DEPLOYMENT_ID --query 'deploymentInfo.status' --region us-west-2 --output json
