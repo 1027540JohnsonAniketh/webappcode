@@ -14,4 +14,5 @@ cd /home/ubuntu/webapp/
 sudo su
 sudo mvn clean
 sudo mvn clean install
-sudo java -jar target/*.jar
+sudo java -jar target/*.jar . &
+sleep 1m
