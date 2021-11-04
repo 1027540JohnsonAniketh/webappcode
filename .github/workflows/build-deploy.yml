@@ -49,7 +49,7 @@ jobs:
           mkdir codedeploy_artifact
           echo '*************Tree Strucutre Build Deployemnt Artifact After mkdir codedeploy_artifact** ***********'
           tree .
-          zip -r ${{env.ARTIFACT_NAME}} codedeploy_artifact java src target
+          zip -r ${{env.ARTIFACT_NAME}} codedeploy/*.sh appspec.yml java src bin target pom.xml resources
           cp -rf ${{env.ARTIFACT_NAME}} codedeploy_artifact/
           echo '*************Tree Strucutre Build Deployemnt Artifact After zip -r ${{env.ARTIFACT_NAME}} codedeploy_artifact/*************'
           tree .
@@ -79,6 +79,16 @@ jobs:
           tree .
           ls ./codedeploy_artifact
           aws s3 sync ./codedeploy_artifact s3://${{secrets.AWS_BUCKET_NAME}}
+          #echo 'Printing environment variables'
+          echo 'CODEDEPLOY_APPLICATION_NAME'
+          echo $CODEDEPLOY_APPLICATION_NAME
+          echo 'CODEDEPLOY_APPLICATION_DEPLOYMENT_GROUP_NAME'
+          echo $CODEDEPLOY_APPLICATION_DEPLOYMENT_GROUP_NAME
+          echo 'S3_CODEDEPLOY_BUCKET'
+          echo $S3_CODEDEPLOY_BUCKET
+          echo '${{env.ARTIFACT_NAME}}'
+          echo ${{env.ARTIFACT_NAME}}
+          echo $DEPLOYMENT_ID
       # - name: CodeDeploy API call
       #   run: |
       #     |
@@ -88,9 +98,9 @@ jobs:
       #         --deployment-group-name ${CODEDEPLOY_APPLICATION_DEPLOYMENT_GROUP_NAME} \
       #         --description "CSYE6255 - CodeDeploy" \
       #         --s3-location bucket=${S3_CODEDEPLOY_BUCKET},bundleType=zip,key=${{env.ARTIFACT_NAME}} \
-      #         --region us-west-2 \
+      #         --region us-west-2 \ 
       #         --output text`
       #       echo $DEPLOYMENT_ID
-      #       aws deploy wait deployment-successful --deployment-id $DEPLOYMENT_ID --region us-east-1
+      #       aws deploy wait deployment-successful --deployment-id $DEPLOYMENT_ID --region us-west-2
       #       aws deploy get-deployment --deployment-id $DEPLOYMENT_ID --query 'deploymentInfo.status' --region us-west-2 --output json
       

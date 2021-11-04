@@ -3,7 +3,7 @@ os: linux
 
 files:             
   - source: /
-    destination: /home/centos/ccwebapp
+    destination: /home/ubuntu/mywebapp
 hooks:
   AfterInstall:
     - location: ./codedeploy/afterInstall.sh
