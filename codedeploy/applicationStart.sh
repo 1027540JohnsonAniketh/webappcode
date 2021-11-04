@@ -10,6 +10,6 @@
 # Export variables
 # sudo mvn spring-boot:run
 
-cd /webapp
+cd /home/ubuntu/webapp/
 sudo su
 sudo mvn clean
