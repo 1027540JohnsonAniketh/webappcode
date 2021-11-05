@@ -98,5 +98,5 @@ jobs:
               --s3-location bucket=${{ env.aws_bucket_name }},bundleType=zip,key=${{env.ARTIFACT_NAME}} \
               --region ${{env.AWS_REGION}}`                
             echo $DEPLOYMENT_ID
-            aws deploy wait deployment-successful --deployment-id $DEPLOYMENT_ID --region ${{env.AWS_REGION}}
+            aws deploy wait deployment-successful --deployment-id $DEPLOYMENT_ID
             aws deploy get-deployment --deployment-id $DEPLOYMENT_ID --query 'deploymentInfo.status' --region ${{env.AWS_REGION}}
