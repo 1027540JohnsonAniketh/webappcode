@@ -99,4 +99,4 @@ jobs:
               --region ${{env.AWS_REGION}}`                
             echo $DEPLOYMENT_ID
             aws deploy wait deployment-successful --deployment-id $DEPLOYMENT_ID
-            aws deploy get-deployment --deployment-id $DEPLOYMENT_ID --query 'deploymentInfo.status' --region ${{env.AWS_REGION}}
+            # aws deploy get-deployment --deployment-id $DEPLOYMENT_ID --query 'deploymentInfo.status' --region ${{env.AWS_REGION}}
