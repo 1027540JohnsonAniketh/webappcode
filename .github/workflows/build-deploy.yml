@@ -96,8 +96,7 @@ jobs:
               --deployment-group-name ${{ env.CODEDEPLOY_APPLICATION_DEPLOYMENT_GROUP_NAME }} \
               --description "CSYE6255 - CodeDeploy" \
               --s3-location bucket=${{ env.aws_bucket_name }},bundleType=zip,key=${{env.ARTIFACT_NAME}} \
-              --region ${{env.AWS_REGION}} \
-              --output text`                
+              --region ${{env.AWS_REGION}}`                
             echo $DEPLOYMENT_ID
-            # aws deploy wait deployment-successful --deployment-id $DEPLOYMENT_ID --region us-west-2
-            # aws deploy get-deployment --deployment-id $DEPLOYMENT_ID --query 'deploymentInfo.status' --region us-west-2 --output json
+            aws deploy wait deployment-successful --deployment-id $DEPLOYMENT_ID --region ${{env.AWS_REGION}}
+            aws deploy get-deployment --deployment-id $DEPLOYMENT_ID --query 'deploymentInfo.status' --region ${{env.AWS_REGION}}
