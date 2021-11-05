@@ -98,7 +98,7 @@ jobs:
               --s3-location bucket=${{ env.aws_bucket_name }},bundleType=zip,key=${{env.ARTIFACT_NAME}} \
               --region ${{env.AWS_REGION}}`                
             echo $DEPLOYMENT_ID
-            dId=$(echo $output | jq -r '.deploymentId')
+            dId=$(echo $DEPLOYMENT_ID | jq -r '.deploymentId')
             echo $dId
             aws deploy wait deployment-successful --deployment-id $dId --region ${{env.AWS_REGION}}
             # aws deploy get-deployment --deployment-id $DEPLOYMENT_ID --query 'deploymentInfo.status' --region ${{env.AWS_REGION}}
