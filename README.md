@@ -1,7 +1,9 @@
 # webappcode
 
 1)First setup the infrasturcture using the following commands:
+
   terraform init
+  
   terrafrom apply    
 
 2)Trigger github actions by creating a pull request and merge it.
