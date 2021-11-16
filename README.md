@@ -1,7 +1,6 @@
 # webappcode
 
-1)First setup the infrasturcture using the following commands:
-
+1)First setup the infrasturcture using the following commands:<br/>
   terraform init
   
   terrafrom apply    
