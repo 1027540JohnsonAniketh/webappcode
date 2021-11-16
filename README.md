@@ -1,12 +1,13 @@
 # webappcode
-
+# Installation:
 1)First setup the infrasturcture using the following commands:<br/>
   terraform init<br/>
   terrafrom apply<br/>
 2)Trigger github actions by creating a pull request and merge it.<br/>
 3)Now open your aws console and check the deployment status in the CodeDeploy application.<br/>
 4)After successful deployment test out the end points.<br/>
-End points:<br/>
+
+# End points:<br/>
 Create a user                               : /v1/users<br/>
 Get a user                                  : /v1/users/{username}<br/>
 Update a user                               : /v1/users/{usernmae}<br/>
