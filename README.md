@@ -8,9 +8,11 @@
 4)After successful deployment test out the end points.<br/>
 
 # Restful End points:<br/>
+<pre>
 Create a user                               : /v1/users<br/>
 Get a user                                  : /v1/users/{username}<br/>
 Update a user                               : /v1/users/{usernmae}<br/>
 Create a user profile image in S3 bucket    : /v1/users<br/>
 Get a user's profile image                  : /v1/users/{username}/{imagename}<br/>
 Update a user                               : /v1/users/{usernmae}/{imagename}<br/>
+</pre>
