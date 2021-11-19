@@ -1,5 +1,5 @@
 # webappcode
-# Installation:
+## Installation:
 <pre>
 1)First setup the infrasturcture using the following commands:
   <b>terraform init</b>
@@ -9,7 +9,7 @@
 4)After successful deployment test out the end points.
 </pre>
 
-# Restful End points:<br/>
+## Restful End points:<br/>
 <pre>
 Create a user                               : /v1/users
 Get a user                                  : /v1/users/{username}
