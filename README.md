@@ -9,10 +9,10 @@
 
 # Restful End points:<br/>
 <pre>
-Create a user                               : /v1/users<br/>
-Get a user                                  : /v1/users/{username}<br/>
-Update a user                               : /v1/users/{usernmae}<br/>
-Create a user profile image in S3 bucket    : /v1/users<br/>
-Get a user's profile image                  : /v1/users/{username}/{imagename}<br/>
-Update a user                               : /v1/users/{usernmae}/{imagename}<br/>
+Create a user                               : /v1/users
+Get a user                                  : /v1/users/{username}
+Update a user                               : /v1/users/{usernmae}
+Create a user profile image in S3 bucket    : /v1/users
+Get a user's profile image                  : /v1/users/{username}/{imagename}
+Update a user                               : /v1/users/{usernmae}/{imagename}
 </pre>
