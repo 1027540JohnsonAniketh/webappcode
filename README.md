@@ -1,11 +1,13 @@
 # webappcode
 # Installation:
-1)First setup the infrasturcture using the following commands:<br/>
-  <b>terraform init</b><br/>
-  <b>terrafrom apply</b><br/>
-2)Trigger github actions by creating a pull request and merge it.<br/>
-3)Now open your aws console and check the deployment status in the CodeDeploy application.<br/>
-4)After successful deployment test out the end points.<br/>
+<pre>
+1)First setup the infrasturcture using the following commands:
+  <b>terraform init</b>
+  <b>terrafrom apply</b>
+2)Trigger github actions by creating a pull request and merge it.
+3)Now open your aws console and check the deployment status in the CodeDeploy application.
+4)After successful deployment test out the end points.
+</pre>
 
 # Restful End points:<br/>
 <pre>
